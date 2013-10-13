@@ -1,0 +1,11 @@
+{
+	"name": "Disqus",
+	"description": "Comments widget",
+	"home": "http://www.disqus.com",
+	"script": "http://go.disqus.com/embed.js",
+	"data": {
+		"unprotectedLibs": "No",
+		"globalsCount": 1,
+		"docWrite": "No"
+	}
+}
