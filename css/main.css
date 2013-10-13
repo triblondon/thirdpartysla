@@ -1,0 +1,19 @@
+
+.verdict {
+	border-radius: 3px;
+	padding: 7px 10px;
+	font-size: 150%;
+}
+.verdict-good {
+	background-color: #A3DB9B;
+}
+.verdict-neutral {
+	background-color: #dddddd;
+}
+.verdict-bad {
+	background-color: #ECA5A5;
+}
+
+#scoring-form .row {
+	margin-bottom: 15px;
+}

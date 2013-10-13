@@ -1,6 +1,6 @@
 
 function renderQuestion(question) {
-	// ...
+	var html;
 }
 
 $(function() {

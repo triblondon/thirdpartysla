@@ -6,14 +6,14 @@
         <title>3rd party SLA</title>
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
 
-        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
-        <script src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js'></script>
-        <script src='/js/tests.js'></script>
-        <script src='/js/app.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js'></script>
+        <script src='js/tests.js'></script>
+        <script src='js/app.js'></script>
     </head>
     <body>
 
@@ -27,8 +27,49 @@
 
         <p>Call it the 'YSlow for widgets' if you will.</p>
 
+        <h2>Rate a script now</h2>
+
         <form id='scoring-form'>
+            <div class='row tag-stability'>
+                <div class='col-lg-7 col-md-12 question'>
+                    Are common 3rd party libraries (eg. jQuery, Underscore, Backbone) included outside of a protected scope (ie is there any chance they may conflict with other instances of the same library that may be included on the page?
+                </div>
+                <div class='col-lg-2 col-md-4 input'>
+                    <select class='form-control'><option></option><option>Yes</option><option>No</option></select>
+                </div>
+                <div class='col-lg-3 col-md-8 verdict verdict-neutral'>
+                    <i></i> <span class='score'>0</span>
+                </div>
+            </div>
+            <div class='row tag-stability tag-footprint'>
+                <div class='col-lg-7 col-md-12 question'>
+                    How many objects/variables do component script(s) require in / add to the global scope?
+                </div>
+                <div class='col-lg-2 col-md-4 input'>
+                    <input class='form-control' type='text'>
+                </div>
+                <div class='col-lg-3 col-md-4 verdict verdict-bad'>
+                    <i></i> <span class='score'>-3</span>
+                </div>
+            </div>
         </form>
+
+        <h3>Verdict</h3>
+        <table class='table'>
+            <thead>
+                <tr><th>Stability</th><th>Performance</th><th>Footprint</th><th>Flexibility</th><th>Security</th><th>Compliance</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class='verdict verdict-good'>2</td>
+                    <td class='verdict verdict-good'>4</td>
+                    <td class='verdict verdict-good'>13</td>
+                    <td class='verdict verdict-bad'>-5</td>
+                    <td class='verdict verdict-bad'>-15</td>
+                    <td class='verdict verdict-neutral'>0</td>
+                </tr>
+            </tbody>
+        </table>
 
         <h2>Scores for popular libraries</h2>
         <p>TODO: List of popular scripts and their scores</p>
