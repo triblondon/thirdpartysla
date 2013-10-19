@@ -1,19 +1,42 @@
 
 .verdict {
 	border-radius: 3px;
-	padding: 7px 10px;
+	padding: 4px 10px;
 	font-size: 150%;
+	display: inline-block;
+	color: white;
+	min-width: 85px;
+}
+.verdict > i {
+	font-family: FontAwesome;
+	display: inline-block;
+	width: 25px;
+	font-style: normal;
 }
 .verdict-good {
-	background-color: #A3DB9B;
+	background-color: #71CF64;
+}
+.verdict-good i:before {
+	content: "\F00C";
 }
 .verdict-neutral {
-	background-color: #dddddd;
+	background-color: #999;
+}
+.verdict-neutral i:before {
+	content: "\F00C";
 }
 .verdict-bad {
-	background-color: #ECA5A5;
+	background-color: #DA0000;
+}
+.verdict-bad i:before {
+	content: "\F071";
 }
 
-#scoring-form .row {
+.result-info {
+	display: none;
+}
+
+
+#scoring-form > div {
 	margin-bottom: 15px;
 }
