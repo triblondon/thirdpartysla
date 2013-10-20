@@ -30,26 +30,71 @@
 
         <h2>Rate a script now</h2>
 
-        <p><strong>Scoring is currently TOTALLY RANDOM (well, it's deterministic, to assist with debugging, but it bears no relation to any kind of actual sensible score</strong></p>
+        <p><strong>TODO: filtering, finish adding tests, allow user to deselect tests they don't like</strong></p>
 
         <form id='scoring-form' class='well'></form>
 
         <h3>Verdict</h3>
-        <table class='table'>
-            <thead>
-                <tr><th>Stability</th><th>Performance</th><th>Footprint</th><th>Flexibility</th><th>Security</th><th>Compliance</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class='verdict verdict-good'>2</td>
-                    <td class='verdict verdict-good'>4</td>
-                    <td class='verdict verdict-good'>13</td>
-                    <td class='verdict verdict-bad'>-5</td>
-                    <td class='verdict verdict-bad'>-15</td>
-                    <td class='verdict verdict-neutral'>0</td>
-                </tr>
-            </tbody>
-        </table>
+        <div id='overall-scores'>
+            <div class='row'>
+                <div class='col-lg-2 col-md-3 col-sm-4 result-stability'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Stability</div>
+                        <div class="panel-body"><div class='verdict'></div></div>
+                   </div>
+                </div>
+                <div class='col-lg-2 col-md-3 col-sm-4 result-performance'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Performance</div>
+                        <div class="panel-body"><div class='verdict'></div></div>
+                    </div>
+                </div>
+                <div class='col-lg-2 col-md-3 col-sm-4 result-footprint'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Footprint</div>
+                        <div class="panel-body"><div class='verdict'></div></div>
+                    </div>
+                </div>
+                <div class='col-lg-2 col-md-3 col-sm-4 result-flexibility'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Flexibility</div>
+                        <div class="panel-body"><div class='verdict'></div></div>
+                    </div>
+                </div>
+                <div class='col-lg-2 col-md-3 col-sm-4 result-security'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Security</div>
+                        <div class="panel-body"><div class='verdict'></div></div>
+                    </div>
+                </div>
+                <div class='col-lg-2 col-md-3 col-sm-4 result-compliance'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Compliance</div>
+                        <div class="panel-body"><div class='verdict'></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>Key to grades:</p>
+        <ul>
+            <li><strong>A</strong>: Best practice</li>
+            <li><strong>B</strong>: Reasonable behaviour.  May sometimes be the best possible behaviour.</li>
+            <li><strong>C</strong>: Undesirable behaviour that should be avoidable, but which does not significantly affect the host site (it may make debugging harder or otherwise make a developer's life hard)</li>
+            <li><strong>D</strong>: Undesirable behaviour which poses a significant risk to the host site.  Investigate carefully before using this script.</li>
+            <li><strong>E</strong>: Dangerous.</li>
+        </ul>
+        <p>Key to categories</p>
+        <ul>
+            <li><strong>Stability</strong>: Properties that affect the robustness of the host site or the component, or their interaction with one another or any other element on the page.</li>
+            <li><strong>Performance</strong>: Page load speed, rendering performance and tying up the main UI thread</li>
+            <li><strong>Footprint</strong>: Things that affect the page's use of CPU and memory</li>
+            <li><strong>Flexibility</strong>: Things that affect the ability of the developer to use the script in the way that they want to</li>
+            <li><strong>Security</strong>: Behaviour that affects the potential surface area in which vulnerabilities might occur.</li>
+        </ul>
+
+
+        <h3>Submit this result?</h3>
+        <p>TODO: generate JSON for download and provide instructions for submitting it back in a pull request</p>
 
         <h2>Scores for popular libraries</h2>
         <p>TODO: List of popular scripts and their scores</p>

@@ -1,42 +1,62 @@
 
 .verdict {
-	border-radius: 3px;
+	border-radius: 10px;
 	padding: 4px 10px;
-	font-size: 150%;
+	font-size: 130%;
 	display: inline-block;
 	color: white;
-	min-width: 85px;
+	text-transform: uppercase;
 }
-.verdict > i {
-	font-family: FontAwesome;
-	display: inline-block;
-	width: 25px;
-	font-style: normal;
+#overall-scores .verdict {
+	border-radius: 0;
+	padding: 15px;
+	font-size: 250%;
 }
-.verdict-good {
+.verdict-a {
 	background-color: #71CF64;
 }
-.verdict-good i:before {
-	content: "\F00C";
+#overall-scores .verdict-a {
+	box-shadow: 0 0 6px 4px rgba(0, 150, 0, 0.2);
 }
-.verdict-neutral {
-	background-color: #999;
+.verdict-b {
+	background-color: #8EC087;
 }
-.verdict-neutral i:before {
-	content: "\F00C";
+#overall-scores .verdict-b {
+	box-shadow: 0 0 6px 4px rgba(42, 87, 42, 0.2);
 }
-.verdict-bad {
-	background-color: #DA0000;
+.verdict-c {
+	background-color: #E0AF46;
 }
-.verdict-bad i:before {
-	content: "\F071";
+#overall-scores .verdict-c {
+	box-shadow: 0 0 6px 4px rgba(212, 157, 13, 0.3);
+}
+.verdict-d {
+	background-color: #D55434;
+}
+#overall-scores .verdict-d {
+	box-shadow: 0 0 6px 4px rgba(112, 21, 21, 0.2);
+}
+.verdict-e {
+	background-color: red;
+}
+#overall-scores .verdict-e {
+	box-shadow: 0 0 6px 4px rgba(255, 0, 0, 0.3);
+}
+
+.info-button {
+	margin-left: 10px;
 }
 
 .result-info {
-	display: none;
+	margin: 0 0 30px 0;
+	font-size: 90%;
+	font-weight: bold;
 }
 
-
-#scoring-form > div {
+#scoring-form > div:not(.result-info) {
 	margin-bottom: 15px;
+}
+
+#overall-scores .panel {
+	text-align: center;
 }
