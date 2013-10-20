@@ -30,7 +30,10 @@ function renderTest(key, test) {
 	$els.form.append(templates.test({
 		key: key,
 		q: test.q,
-		select: !test.opts ? null: {
+		select: (!test.opts || test.multi) ? null : {
+			opts: test.opts
+		},
+		multi: (!test.opts || !test.multi) ? null : {
 			opts: test.opts
 		},
 		text: test.opts ? null : true,
@@ -40,17 +43,24 @@ function renderTest(key, test) {
 
 function updateTestScore($tel) {
 	var question = tests[$tel.attr('data-key')];
-	var answer = $tel.find('.form-control').val();
+	if ($tel.find('.form-control').length == 1) {
+		var answer = $tel.find('.form-control').val();
+	} else {
+		var answer = [];
+		$tel.find('.checkbox input').each(function() {
+			if (this.checked) answer.push(this.value);
+		});
+	}
 	var data = {};
 	if (answer === '') {
 		$tel.find('.result').html('');
 	} else {
 		if (typeof question.score == 'function') {
 			data = question.score(answer);
-			if (typeof data != 'object') data = {score: data, info: null};
 		} else if (typeof question.score == 'object') {
-			data.score = question.score[answer];
+			data = question.score[answer];
 		}
+		if (typeof data != 'object') data = {score: data, info: null};
 		data.grade = grades[data.score];
 		$tel.find('.result').html(templates.result(data));
 		$tel.next('.result-info').remove();
@@ -89,7 +99,7 @@ $(function() {
 		}
 	});
 
-	$els.form.on('change keyup', '.form-control', function() {
+	$els.form.on('change keyup', '.form-control, .checkbox input', function() {
 		updateTestScore($(this).closest('.test'));
 	});
 	$els.form.on('click', '.info-button', function() {

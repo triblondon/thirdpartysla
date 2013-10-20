@@ -131,5 +131,182 @@ var tests = {
 		"tags": ["Security", "Stablility"],
 		"opts": ["Yes", "No"],
 		"score": {"Yes":4, "No":1}
+	},
+	"browserSupport": {
+		"q": "Which browsers is the component script tested in? (where versions are not specified, entry refers to 'evergreen' current and previous versions)",
+		"tags": ["Stability"],
+		"opts": ["Legacy: IE 6", "Legacy: IE 7", "Legacy: IE 8", "Legacy: IE 9", "Legacy: Firefox 3.6", "Legacy: Mobile Safari iOS 5.1.1", "Legacy: Mobile Safari iOS 6.1.3", "Evergreen: Internet Explorer", "Evergreen: Firefox (excl. FFOS)", 'Evergreen: Chrome', 'Evergreen: Opera', 'Evergreen: Safari (not mobile)', 'Evergreen: Opera Mini', 'Evergreen: FirefoxOS', 'Evergreen: Mobile Safari', 'Evergreen: Chrome for Android', 'Evergreen: Android browser/webview'],
+		"multi": true,
+		"score": function(a) {
+			return 1;
+		}
+	},
+	"domInteraction": {
+		"q": "When does the script interact with the DOM (choose all that apply)",
+		"tags": ["Performance", "Flexibility"],
+		"opts": ['On parse', 'On the DOMReady event', 'On the load event', 'On recurring timer events', 'On user interaction events', 'On network related events', 'When invoked by a function call on JS API'],
+		"multi": true,
+		"score": function(a) {
+			var msgs = [], bestscore = 1;
+			if (a.indexOf('On parse') != -1) {
+				bestscore = Math.max(bestscore, 4);
+				msgs.push("Interacting with the DOM on parse slows the loading of the script significantly and limits the developer's choice of when to load it");
+			}
+			if (a.indexOf('On the DOMReady event') != -1 || a.indexOf('On the load event') != -1) {
+				bestscore = Math.max(bestscore, 3);
+				msgs.push("Binding to page load-time events requires the script to be loaded synchronously");
+			}
+			if (a.indexOf('On recurring timer events') != -1) {
+				bestscore = Math.max(bestscore, 2);
+				msgs.push("Touching the DOM regularly based on timer events may cause 'jank'");
+			}
+			return {score:bestscore, info:msgs.join('. ')};
+		}
+	},
+	"setsFirstPartyCookies": {
+		"q": "Does the script set any persistent cookies on the host domain?",
+		"tags": ["Security", "Footprint"],
+		"opts": ["Yes", "No"],
+		"score": {"Yes":2, "No":1}
+	},
+	"usesHostsCookies": {
+		"q": "Does the component depend on, or modify, any existing cookies set by the host page?",
+		"tags": ["Security", "Footprint"],
+		"opts": ["Yes, read only", "Yes, reads and modifies", "No"],
+		"score": {"Yes, read only":2, "Yes, reads and modifies": 3, "No":1}
+	},
+	"usesBrowserStorage": {
+		"q": "Does the component persist data in the browser using a mechanism other than cookies? ",
+		"tags": ["Footprint"],
+		"opts": ["Yes", "No"],
+		"score": {"Yes":2, "No":1}
+	},
+	"removesEventListeners": {
+		"q": "If the component adds event listeners to DOM elements, does it remove them when they're no longer required?",
+		"tags": ["Footprint"],
+		"opts": ["Yes", "No"],
+		"score": {"Yes":1, "No":3}
+	},
+	"cachedOnCdn": {
+		"q": "Is the script (including all non-dynamic resources) cached on a CDN with global reach?",
+		"tags": ["Performance"],
+		"opts": ["Yes", "No"],
+		"score": {
+			"Yes":1,
+			"No": {
+				"score": 3,
+				"info": "If script is not CDN-cached its load perforance is likely to vary widely between different regions"
+			}
+		}
+	},
+	"originLocations": {
+		"q": "Where are there servers that can accept write operations performed by the script (ie. which of the following locations contain origins for the script's backing service)?",
+		"tags": ["Performance"],
+		"opts": ["Europe", "North America", "China", "Asia (excl China)", "Australia"],
+		"multi": true,
+		"score": function(a) {
+			return (a.length == 1) ? 3 : 1;
+		}
+	},
+	"payloadSizeKb": {
+		"q": "What is the total data size in kilobytes transferred on page load?",
+		"tags": ["Footprint", "Performance"],
+		"score": function(a) {
+			return (a<100) ? 1 : (a<250) ? 2 : (a<1000) ? 3 : 4;
+		}
+	},
+	"browserCacheTtl": {
+		"q": "What is the minimum browser-cache TTL (in seconds) of files downloaded on page load (ie. Cache-control max-age)?",
+		"tags": ["Performance"],
+		"score": function(a) {
+			return (a==0) ? 4 : (a<3600) ? 2 : 1;
+		}
+	},
+	"hasSingleOrigin": {
+		"q": "Is the script or any web service it depends on served from a single origin (ie. is there just one origin data center)?",
+		"tags": ["Stability"],
+		"opts": ["Yes", "No"],
+		"score": {"Yes":3, "No":1}
+	},
+	"mttrLag": {
+		"q": "In the event of a complete failure of the primary origin (eg unmitigated data centre power failure), what is the mean time to recovery (MTTR), in seconds?",
+		"tags": ["Stability"],
+		"score": function(a) {
+			return (a==0) ? 1 : (a<=3600) ? 2 : (a<=86400) ? 3 : 4;
+		}
+	},
+	"recentOutages": {
+		"q": "How many full outages has the service experienced in the 12 months prior to today? (where full outage means a user with empty cache anywhere in the world being unable to use the service)",
+		"tags": ["Stability"],
+		"score": function(a) {
+			return (a==0) ? 1 : (a==1) ? 3 : 4;
+		}
+	},
+	"minHttpRequests": {
+		"q": "What is the minimum number of HTTP requests that the script will make when invoked?",
+		"tags": ["Performance", "Footprint"],
+		"score": function(a) {
+			return (a<=2) ? 1 : (a<=5) ? 2 : (a<=20) ? 3 : 4;
+		}
+	},
+	"supportsSsl": {
+		"q": "Is it possible to make ALL the script's network activity go over HTTPS?",
+		"tags": ["Security"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:1, No:3}
+	},
+	"supportsFastHttp": {
+		"q": "Is HTTP 2.0 or SPDY supported for all requests?",
+		"tags": ["Performance"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:1, No:2}
+	},
+	"bundleable": {
+		"q": "Can the script's inital payload be bundled with the host page's own scripts?",
+		"tags": ["Performance"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:1, No:2}
+	},
+	"hasOptimisationTools": {
+		"q": "Does the script vendor offer tools to help developers assess the performance impact of the script and/or to ensure that the script is being invoked in an optimal way?",
+		"tags": ["Performance"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:1, No:2}
+	},
+	"hasPublicStatusPage": {
+		"q": "Is there a public status page describing the current operational state of the script's backing services?",
+		"tags": ["Stability"],
+		"opts": ["Yes, with machine readable output", "Yes, human readable", "No"],
+		"score": {"Yes, with machine readable output":1, "Yes, human readable":2, "No":3}
+	},
+	"usesOwnPublicApi": {
+		"q": "Does the script use ONLY API services that are also available via a public API (ie could a developer reimplement the front end component themselves using the service's published API)?",
+		"tags": ["Flexibility"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:1, No:3}
+	},
+	"consistencyGuaranteed": {
+		"q": "If backing services use replication, is it guaranteed that end users will never see incongruous data as a result of replication lag?",
+		"tags": ["Stability"],
+		"opts": ["Yes", "No"],
+		"score": {"Yes":1, "No":3}
+	},
+	"collectsPersonalData": {
+		"q": "Will the component be involved with collecting user identifiable data (including any one of name, email address, credit card details, or phone number)?",
+		"tags": ["Compliance"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:2, No:1}
+	},
+	"safeHarborCompliant": {
+		"q": "For European customers, does the script's backing service either a) not store any personal data, b) store personal data only within the EU, or c) store personal data outside the EU in compliance with the US Safe Harbor data protection standard? (choose Yes if any statement is true)",
+		"tags": ["Compliance"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:1, No:4}
+	},
+	"respectsDoNotTrack": {
+		"q": "Does the script respect the Do-Not-Track HTTP header, either actively or by not conducting any tracking at all?",
+		"tags": ["Compliance"],
+		"opts": ["Yes", "No"],
+		"score": {Yes:1, No:3}
 	}
 };

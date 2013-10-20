@@ -47,6 +47,11 @@
 	margin-left: 10px;
 }
 
+.test .input .checkbox {
+	margin-top: 0;
+	margin-bottom: 3px;
+}
+
 .result-info {
 	margin: 0 0 30px 0;
 	font-size: 90%;
