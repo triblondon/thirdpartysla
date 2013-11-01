@@ -1,3 +1,18 @@
+/**
+ * Third party script tests
+ *
+ * Define tests as properties of the object literal 'tests'.  Each test must
+ * have a 'q' property containing the question as a string, and 'score',
+ * which may either be an object literal mapping answers to scores, or a
+ * function which takes an answer and returns a score.
+ *
+ * A 'score' is either a numeric value between 1 and 5, or an object with two
+ * properties, 'score' (as above) and 'info', to provide context for the
+ * score as a string.
+ *
+ * The 1-5 scoring scale maps to the grades A-E, the meanings of which are
+ * documented in index.html.  1=A, 2=B, 3=C, 4=D, 5=E.
+ */
 var tests = {
 
 	"unprotectedLibs": {

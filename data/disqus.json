@@ -3,6 +3,8 @@
 	"description": "Comments widget",
 	"home": "http://www.disqus.com",
 	"script": "http://go.disqus.com/embed.js",
+	"testdate": "2013-10-30T17:32:00Z",
+	"evaluator": "Andrew Betts, FT Labs",
 	"data": {
 		"unprotectedLibs": "No",
 		"globalsCount": 1,

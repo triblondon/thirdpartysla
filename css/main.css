@@ -52,6 +52,32 @@
 	margin-bottom: 3px;
 }
 
+.test.disabled .input > * {
+	pointer-events: none;
+	background-color: #ddd;
+}
+.test.disabled .verdict {
+	display: none;
+}
+.test.disabled .question {
+	color: #777;
+}
+
+#scoring-form .row:nth-child(2n) {
+	background-color: #fed;
+}
+.question, .input, .result {
+	margin: 10px 0;
+}
+.question-toggle {
+	float: left;
+	padding: 10px;
+}
+.question span {
+	display: block;
+	margin-left: 30px;
+}
+
 .result-info {
 	margin: 0 0 30px 0;
 	font-size: 90%;
@@ -64,4 +90,21 @@
 
 #overall-scores .panel {
 	text-align: center;
+}
+
+#filters {
+	list-style-type: none;
+	margin: 1em 0;
+	padding: 0;
+}
+#filters li.filter-all {
+	background: #9f9;
+	font-weight: bold;
+}
+#filters li.filter-some {
+	background: #aeb;
+}
+#filters li.filter-none {
+	background: #ddd;
+	color: #444;
 }
