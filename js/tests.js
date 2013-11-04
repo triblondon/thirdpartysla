@@ -150,10 +150,13 @@ var tests = {
 	"browserSupport": {
 		"q": "Which browsers is the component script tested in? (where versions are not specified, entry refers to 'evergreen' current and previous versions)",
 		"tags": ["Stability"],
-		"opts": ["Legacy: IE 6", "Legacy: IE 7", "Legacy: IE 8", "Legacy: IE 9", "Legacy: Firefox 3.6", "Legacy: Mobile Safari iOS 5.1.1", "Legacy: Mobile Safari iOS 6.1.3", "Evergreen: Internet Explorer", "Evergreen: Firefox (excl. FFOS)", 'Evergreen: Chrome', 'Evergreen: Opera', 'Evergreen: Safari (not mobile)', 'Evergreen: Opera Mini', 'Evergreen: FirefoxOS', 'Evergreen: Mobile Safari', 'Evergreen: Chrome for Android', 'Evergreen: Android browser/webview'],
+		"opts": ["Legacy: IE 6", "Legacy: IE 7", "Legacy: IE 8", "Legacy: IE 9", "Legacy: Firefox 3.6", "Legacy: Mobile Safari iOS 5.1.1", "Legacy: Mobile Safari iOS 6.1.3", "Legacy: Android browser (Gingerbread)", "Legacy: Android browser (ICS)", "Legacy: Android browser (Jelly Bean)", "Evergreen: Internet Explorer", "Evergreen: Firefox (excl. FFOS)", 'Evergreen: Chrome', 'Evergreen: Opera', 'Evergreen: Safari (not mobile)', 'Evergreen: Opera Mini', 'Evergreen: FirefoxOS', 'Evergreen: Mobile Safari', 'Evergreen: Chrome for Android'],
 		"multi": true,
 		"score": function(a) {
-			return 1;
+			var bqual = ["Evergreen: Internet Explorer", "Evergreen: Firefox (excl. FFOS)", 'Evergreen: Chrome', 'Evergreen: Opera', 'Evergreen: Safari (not mobile)', 'Evergreen: FirefoxOS', 'Evergreen: Mobile Safari', 'Evergreen: Chrome for Android'];
+			if (a.length == tests.browserSupport.opts.length) return 1;
+			if (bqual.filter(function(i) {return !(a.indexOf(i) > -1);}).length === 0) return 2;
+			return 3;
 		}
 	},
 	"domInteraction": {
