@@ -185,7 +185,10 @@ var tests = {
 		"q": "Does the script set any persistent cookies on the host domain?",
 		"tags": ["Security", "Footprint"],
 		"opts": ["Yes", "No"],
-		"score": {"Yes":2, "No":1}
+		"score": {"Yes":{
+			"score": 2,
+			"info": "It may be a necessary part of the script's operation to set first party cookies, eg if it's an analytics tool like Google Analytics. However, scripts that set their own cookies on the host domain increase the size of HTTP headers on every request, and contribute towards a fixed upper limit on the number of cookies allowed per domain."
+		}, "No":1}
 	},
 	"usesHostsCookies": {
 		"q": "Does the component depend on, or modify, any existing cookies set by the host page?",
