@@ -282,12 +282,6 @@ var tests = {
 		"opts": ["Yes", "No"],
 		"score": {Yes:1, No:2}
 	},
-	"hasOptimisationTools": {
-		"q": "Does the script vendor offer tools to help developers assess the performance impact of the script and/or to ensure that the script is being invoked in an optimal way?",
-		"tags": ["Performance"],
-		"opts": ["Yes", "No"],
-		"score": {Yes:1, No:2}
-	},
 	"hasPublicStatusPage": {
 		"q": "Is there a public status page describing the current operational state of the script's backing services?",
 		"tags": ["Stability"],
