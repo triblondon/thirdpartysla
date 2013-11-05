@@ -237,10 +237,10 @@ var tests = {
 		}
 	},
 	"browserCacheTtl": {
-		"q": "What is the minimum browser-cache TTL (in seconds) of files downloaded on page load (ie. Cache-control max-age)?",
+		"q": "What is the minimum browser-cache TTL (in seconds) of files downloaded when the component script loads (ie. Cache-control max-age)?  Omit subresources and XHR which load only on user action.",
 		"tags": ["Performance"],
 		"score": function(a) {
-			return (a==0) ? 4 : (a<3600) ? 2 : 1;
+			return (a<60) ? 4 : (a<300) ? 3 : (a<3600) ? 2 : 1;
 		}
 	},
 	"resourceTiming": {
