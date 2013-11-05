@@ -243,6 +243,18 @@ var tests = {
 			return (a==0) ? 4 : (a<3600) ? 2 : 1;
 		}
 	},
+	"resourceTiming": {
+		"q": "Do the component script and all associated resources provide ResourceTiming opt-in header (ie. Timing-Allow-Origin: *)?",
+		"tags": ["Performance"],
+		"opts": ["Yes", "No"],
+		"score": {
+			"Yes":1,
+			"No": {
+				"score": 3,
+				"info": "Without ResourceTiming opt-in header the site cannot track the performance of the component"
+			}
+		}
+	},
 	"hasSingleOrigin": {
 		"q": "Is the script or any web service it depends on served from a single origin (ie. is there just one origin data center)?",
 		"tags": ["Stability"],
