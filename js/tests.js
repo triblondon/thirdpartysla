@@ -196,8 +196,15 @@ var tests = {
 		"opts": ["Yes, read only", "Yes, reads and modifies", "No"],
 		"score": {"Yes, read only":2, "Yes, reads and modifies": 3, "No":1}
 	},
+	"totalCookieWeight": {
+		"q": "What is the total data size in bytes stored in cookies by the script?",
+		"tags": ["Security", "Footprint"],
+		"score": function(a) {
+			return (a < 100) ? 1 : (a < 250) ? 2 : (a < 1000) ? 3 : 4;
+		}
+	},
 	"usesBrowserStorage": {
-		"q": "Does the component persist data in the browser using a mechanism other than cookies? ",
+		"q": "Does the component persist data in the browser using a mechanism other than cookies?",
 		"tags": ["Footprint"],
 		"opts": ["Yes", "No"],
 		"score": {"Yes":2, "No":1}
