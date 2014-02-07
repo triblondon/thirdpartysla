@@ -197,10 +197,10 @@ var tests = {
 		"score": {"Yes, read only":2, "Yes, reads and modifies": 3, "No":1}
 	},
 	"totalCookieWeight": {
-		"q": "What is the total data size in bytes stored in cookies by the script?",
+		"q": "What is the maximum total size of data, in bytes, stored in cookies by the script?",
 		"tags": ["Security", "Footprint"],
 		"score": function(a) {
-			return (a < 100) ? 1 : (a < 250) ? 2 : (a < 1000) ? 3 : 4;
+			return (a === 0) ? 1 : (a < 150) ? 2 : (a < 500) ? 3 : (a < 2000) ? 4 : 5;
 		}
 	},
 	"usesBrowserStorage": {
