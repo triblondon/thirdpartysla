@@ -1,0 +1,56 @@
+{
+	"name": "Viafoura",
+	"description": "Social commenting",
+	"home": "http://viafoura.com/",
+	"script": "http://cdn.viafoura.net/vf.js",
+	"evaluator": "Barbara Bermes",
+	"testdate": "2014-01-16T04:03:44.359Z",
+	"data": {
+		"unprotectedLibs": "No",
+		"globalsCount": "0",
+		"docWrite": "No",
+		"consoleOutput": "No",
+		"jsErrors": "No",
+		"asyncLoadable": "Yes",
+		"initMethod": "On a function call",
+		"destroyable": "",
+		"configMethod": "Method call on JS API",
+		"packageSupport": "",
+		"offlineSupport": "",
+		"recurringTimerFreq": "",
+		"recurringXhrFreq": "0",
+		"onRemovingScript": "No impact",
+		"isALoader": "Yes",
+		"browserSupport": [
+			"Evergreen: Chrome"
+		],
+		"domInteraction": [
+			"On the DOMReady event",
+			"On recurring timer events"
+		],
+		"setsFirstPartyCookies": "Yes",
+		"usesHostsCookies": "No",
+		"usesBrowserStorage": "",
+		"removesEventListeners": "Yes",
+		"cachedOnCdn": "Yes",
+		"originLocations": [
+			"North America"
+		],
+		"payloadSizeKb": "378",
+		"browserCacheTtl": "300",
+		"resourceTiming": "No",
+		"hasSingleOrigin": "Yes",
+		"mttrLag": "",
+		"recentOutages": "",
+		"minHttpRequests": "",
+		"supportsSsl": "Yes",
+		"supportsFastHttp": "",
+		"bundleable": "",
+		"hasPublicStatusPage": "Yes, human readable",
+		"usesOwnPublicApi": "Yes",
+		"consistencyGuaranteed": "",
+		"collectsPersonalData": "",
+		"safeHarborCompliant": "",
+		"respectsDoNotTrack": ""
+	}
+}
